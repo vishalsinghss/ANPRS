@@ -1,2 +1,2 @@
-# ALPRS
-Automatic License Plate Recognition System
+# ANPRS
+Automatic Number Plate Recognition System
