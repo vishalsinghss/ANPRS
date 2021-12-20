@@ -21,7 +21,7 @@ def extract_num(img_name):
         # crop a portion of plate
         a,b = (int(0.02*img.shape[0]), int(0.025*img.shape[1]))
         plate = img[y+a:y+h-a, x+b:x+w-b, :]
-        # make image more darker to identify the LPR
+        # make image more darker to identify the no. plate
         ## iMAGE PROCESSING
         kernel = np.ones((1, 1), np.uint8)
         plate = cv2.dilate(plate, kernel, iterations=1)
