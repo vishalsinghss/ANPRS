@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data">
+<!-- <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="submit">
@@ -8,4 +8,70 @@
 {{result_text}}
 
 <img src='{{plate_image}}' />
-<img src='{{result_image}}' />
+<img src='{{result_image}}' /> -->
+{% load static %}
+<html>
+
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
+</head>
+<!-- For demo purpose -->
+
+<body>
+    <header class="text-white text-center">
+        <h1 class="display-4">Number Plate Detection</h1>
+        <p class="lead mb-0">Uplaod Image to Detect Number Plate</p>
+    </header>
+
+
+    <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+
+            <!-- Upload image input-->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                    <input name="image" required id="upload" type="file" onchange="readURL(this);"
+                        class="form-control border-0">
+                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                    <div class="input-group-append">
+                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i
+                                class="fa fa-cloud-upload mr-2 text-muted"></i><small
+                                class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Detect" />
+            </form>
+
+            <!-- Uploaded image area-->
+            <div id="image_display">
+                <p class="font-italic text-white text-center">Verify the Image You Uploaded</p>
+                <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
+                        class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+            </div>
+            <div id="response">
+                {% if result_text %}
+                <h2 class="font-italic text-white text-center">{{result_text}}</p>
+                    {% endif %}
+                    {% if result_image %}
+                    <div class="image-area mt-4"><img src="{{result_image}}"
+                            class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                    {% endif %}
+                    {% if plate_image %}
+                    <div class="image-area mt-4"><img src="{{plate_image}}"
+                            class="img-fluid rounded shadow-sm mx-auto d-block">
+                    </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+
+</html>
