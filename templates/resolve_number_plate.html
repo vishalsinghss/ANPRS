@@ -1,0 +1,11 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="submit">
+</form>
+
+{{plate_number}}
+{{result_text}}
+
+<img src='{{plate_image}}' />
+<img src='{{result_image}}' />
